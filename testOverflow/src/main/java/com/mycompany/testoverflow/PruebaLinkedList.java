@@ -42,8 +42,25 @@ class LinkdList {
     public void print() {       
         Student current = this.head;
         while(current !=null) {
-            System.out.println(current.name+"-"+current.score);
+            System.out.println(current.name+", "+current.score);
             current = current.next;
+        }
+    }
+    
+    public Student retrieve(String searchedName) {
+        Student current = this.head;
+        while(current != null) {
+            if(current.name.equals(searchedName)) { return current; }
+            current = current.next;
+        }
+        return null;
+    }
+    
+    public Student toString(Student student) {
+        if (student != null) {
+            System.out.println("Found: "+student.name+" Score: "+student.score);
+        } else {
+            System.out.println("No se pudo encontrar al estudiante");
         }
     }
 }
@@ -57,5 +74,12 @@ public class PruebaLinkedList {
         lista.add("Paul", 78);
         
         lista.print();
+        
+        Student found = lista.retrieve("Ada");
+        System.out.println("Found: "+found.name+" Score: "+found.score);
+        Student found2 = lista.retrieve("Pepe");
+        if (found2 != null) {
+            System.out.println("Found: "+found2.name+" Score: "+found2.score);
+        }
     }
 }
