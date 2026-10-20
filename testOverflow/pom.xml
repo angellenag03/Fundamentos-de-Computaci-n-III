@@ -8,6 +8,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
-        <exec.mainClass>com.mycompany.testoverflow.TestOverflow</exec.mainClass>
+        <exec.mainClass>expedientespersonas.ExpedientesPersonas</exec.mainClass>
     </properties>
 </project>

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.testoverflow;
 
 import java.io.IOException;
@@ -11,14 +8,28 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  *
  * @author angelsn
  */
+class nameCount {
+    String name;
+    int count;
+    public nameCount(String name) {
+        this.name = name;
+        this.count = 1;
+    }
+    public void incrementCount() {
+        this.count++;
+    }
+    public String getName() {
+        return this.name+" (" + this.count + ")";
+    }
+}
 public class NombresArrayList {
     public static void main(String[] args) {
+//        ArrayList<String> countedFirstLastNames = countNames(namesList, FIRST_LASTNAME);
         ArrayList<String> nombres = new ArrayList<>();
         Path filePath = Paths.get ("Listado.txt");
         ArrayList<String> namesList = readNamesFromFile(filePath.toString());
@@ -80,5 +91,29 @@ public class NombresArrayList {
         }
         Collections.sort(primerosNombres);
         return primerosNombres;
+    }
+    
+    public static ArrayList<String> countNames(ArrayList<String> names) {
+        ArrayList<nameCount> countedNames = new ArrayList<>();
+        int pos = 0; // track the position of the name 
+        for (String name : names) {
+            String[] splitName = name.split(" ");
+            boolean found = false;
+            for (nameCount nc : countedNames) {
+                if (nc.name.equals(splitName[pos])) {
+                    nc.incrementCount();
+                    found = true;
+                    break;  
+                }
+            }
+            if (!found) {
+                countedNames.add(new nameCount(splitName[pos]));
+            }
+        }
+        ArrayList<String> result = new ArrayList<>();
+        for (nameCount nc : countedNames) {
+            result.add(nc.getName());
+        }
+        return result;
     }
 }
